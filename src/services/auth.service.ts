@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { LoginDto } from 'src/dtos/usuario.dto';
 import { Usuario } from 'src/entities/usuarios.entity';
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -15,11 +16,17 @@ export class AuthService {
     const { email, password_hash } = loginDto;
 
     const user = await this.usuarioRepository.findOne({
-      where: { email, password_hash },
+      where: { email },
     });
 
     if (!user) {
-      throw new UnauthorizedException('Credenciales inválidas');
+      throw new UnauthorizedException('Usuario no encontrado');
+    }
+
+    const passwordValid = await bcrypt.compare(password_hash, user.password_hash);
+
+    if (!passwordValid) {
+      throw new UnauthorizedException('Contraseña incorrecta');
     }
 
     return {
