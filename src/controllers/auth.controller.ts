@@ -10,7 +10,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('login')
-  @ApiOperation({ summary: 'Iniciar sesión de usuario' })
+  @ApiOperation({ summary: 'Iniciar sesión de usuario Pago Izi' })
   login(@Body() loginDto: LoginDto) {
     return this.authService.login(loginDto);
   }
