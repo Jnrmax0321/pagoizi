@@ -31,5 +31,5 @@ export class Contacto {
   alias: string;
 
   @CreateDateColumn()
-  creado_en: Date;
+  creado_at: Date;
 }

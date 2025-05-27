@@ -30,5 +30,5 @@ export class Dispositivo {
   modelo: string;
 
   @CreateDateColumn()
-  creado_en: Date;
+  creado_at: Date;
 }

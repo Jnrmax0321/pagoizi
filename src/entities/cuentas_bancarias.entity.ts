@@ -41,5 +41,5 @@ export class CuentaBancaria {
   verificado: boolean;
 
   @CreateDateColumn()
-  creado_en: Date;
+  creado_at: Date;
 }
